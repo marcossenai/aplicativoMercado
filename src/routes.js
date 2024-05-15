@@ -1,69 +1,84 @@
-import React from "react";
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import React from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Image, View, Text } from 'react-native';
 
-import index from './pages/index'
-import calculadora from './pages/calculadora'
-import lista from './pages/lista'
-import { setStatusBarBackgroundColor } from "expo-status-bar";
-
-import { Entypo, Feather } from '@expo/vector-icons'
-import { Image } from 'react-native';
-
+import Index from './pages/index';
+import Calculadora from './pages/calculadora';
+import Lista from './pages/lista';
 
 const Tab = createBottomTabNavigator();
 
+function CustomTabIcon({ source, focused }) {
+  return (
+    <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+      <Image
+        source={source}
+        style={{
+          width: focused ? 30 : 25,
+          height: focused ? 30 : 25,
+          tintColor: focused ? '#fff' : 'rgba(255, 255, 255, 0.7)',
+        }}
+      />
+    </View>
+  );
+}
+
 export default function Routes() {
-    return (
-        <Tab.Navigator
-            screenOptions={{
-                tabBarStyle: {
-                    backgroundColor: '#008000',
-                    borderTopColor: 'transparent',
-                    paddingBottom: 0,
-                    paddingTop: 0,
-                },
-                tabBarActiveTintColor: '#fff',
-                tabBarInactiveTintColor: 'rgba(255, 255, 255, 0.7)'
-            }}
-        >
-            <Tab.Screen
-                name="Home"
-                component={index}
-                options={{
-                    tabBarIcon: ({ focused }) => (
-                        <Image
-                            source={focused ? require('../assets/home.png') : require('../assets/home.png')}
-                            style={{ width: 25, height: 25 }}
-                        />
-                    )
-                }}
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        tabBarStyle: {
+          backgroundColor: '#008000',
+          borderTopColor: 'transparent',
+          paddingBottom: 5,
+          paddingTop: 5,
+          height: 60,
+        },
+        tabBarActiveTintColor: '#fff',
+        tabBarInactiveTintColor: 'rgba(255, 255, 255, 0.7)',
+      }}
+    >
+      <Tab.Screen
+        name="Home"
+        component={Index}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <CustomTabIcon
+              source={require('../assets/home.png')}
+              focused={focused}
             />
+          ),
+          headerShown: false,
+        }}
+      />
 
-            <Tab.Screen
-                name="lista"
-                component={lista}
-                options={{
-                    tabBarIcon: ({ focused }) => (
-                        <Image
-                            source={focused ? require('../assets/lista.png') : require('../assets/lista.png')}
-                            style={{ width: 25, height: 25 }}
-                        />
-                    )
-                }}
+      <Tab.Screen
+        name="Lista"
+        component={Lista}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <CustomTabIcon
+              source={require('../assets/lista.png')}
+              focused={focused}
             />
+          ),
+          headerShown: false,
+        }}
+      />
 
-            <Tab.Screen
-                name="calculadora"
-                component={calculadora}
-                options={{
-                    tabBarIcon: ({ focused }) => (
-                        <Image
-                            source={focused ? require('../assets/lista.png') : require('../assets/calculadora.png')}
-                            style={{ width: 25, height: 25 }}
-                        />
-                    )
-                }}
+      <Tab.Screen
+        name="Calculadora"
+        component={Calculadora}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <CustomTabIcon
+              source={require('../assets/calculadora.png')}
+              focused={focused}
             />
-        </Tab.Navigator>
-    )
+          ),
+          headerShown: false,
+        }}
+      />
+    </Tab.Navigator>
+  );
 }
