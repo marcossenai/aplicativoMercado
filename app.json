@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "aplicativoMercado",
+    "name": "Pão de Açúcar",
     "slug": "aplicativoMercado",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -18,10 +18,22 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.marcoslacerdasenai.aplicativoMercado"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "280b6f93-afa0-4774-b96e-53f021c26902"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/280b6f93-afa0-4774-b96e-53f021c26902"
     }
   }
 }
